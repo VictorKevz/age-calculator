@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Form from "./components/Form/Form";
 import Results from "./components/Results/Results";
+import { motion } from "framer-motion";
 import "./App.css";
 
 function App() {
@@ -21,10 +22,30 @@ function App() {
     months: null,
     days: null,
   });
-
+const bounceIn = {
+  hidden:{
+    y:"-100%", scale:0.5, opacity:0.5
+  },
+  visible:{
+    y:0, scale:1, opacity:1,
+    transition:{
+      type:"spring",
+      delay:0.1,
+      duration:1,
+      damping:15,
+      mass:1
+    }
+  },
+}
   return (
     <main className="outer-container">
-      <div className="inner-container">
+      <motion.div 
+      variants={bounceIn}
+      initial="hidden"
+      animate="visible"
+      className="inner-container"
+
+      >
         <Form
           setFormData={setFormData}
           formData={formData}
@@ -33,7 +54,7 @@ function App() {
           setAge={setAge}
         />
         <Results age={age} />
-      </div>
+      </motion.div>
     </main>
   );
 }

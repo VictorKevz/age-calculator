@@ -98,6 +98,7 @@ function Form({ formData, setFormData, validationErrors, setValidationErrors, se
                   value={formData[field.label]}
                   onChange={handleChange}
                   placeholder={field.placeholder}
+                  id={field.id}
                   className={`form-input ${field.label} ${validationErrors[field.label] ? 'input-error' : ''}`}
                 />
                 {validationErrors[field.label] && (
